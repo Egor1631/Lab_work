@@ -1,0 +1,83 @@
+#include "LabWork2.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void Task1 (int array[], int size) {
+
+
+    int i = 0;
+    int minEven = -1;
+    while (i<size) {
+        if (array[i]%2==0 && array[i]>0&&(array[i]<minEven || minEven == -1)) {
+            minEven=array[i];
+        }
+        i++;
+    }
+    if (minEven == -1) {
+        printf("Min even positive element not found");
+    }
+    else if (minEven != -1) {
+        printf("Min even positive element: %d\t", minEven);
+        printf("\n");
+    }
+}
+void Task2(int array[], int size) {
+    printf("Input number: ");
+    int number;
+    scanf("%d", &number);
+    int lastOdd = -1;
+    int index = 0;
+    for (int i =0; i<size;i++) {
+        if (array[i] % 2 != 0 && array[i]%number!=0) {
+           lastOdd = array[i];
+            index=i;
+        }
+    }
+    if (lastOdd == -1) {
+        printf("Not found \n");
+    }
+    else {
+        printf("Element = %d\t",lastOdd);
+        printf("Index of element: %d\n",index);
+    }
+
+}
+int main()
+{
+    int length;
+    printf("Input quantity of numbers in array: ");
+    scanf("%d",&length);
+    if (length>2 && length <= 5) {
+        printf("\n");
+        int array[length];
+        for (int i =0;i<length;i++) {
+            printf("Inpur your number %d:",i+1);
+            scanf("%d", &array[i]);
+        }
+        printf("You entered:\n");
+        for (int i = 0; i < length; i++) {
+            printf("%d ", array[i]);
+        }
+        printf("\n");
+        Task1(array, length);
+        Task2(array, length);
+    }
+    else {
+        int array[length];
+        printf("Random numbers in array\n");
+        for (int i =0;i<length;i++) {
+            int random_number = rand() % 101;
+            array[i] = random_number -50;
+        }
+        printf("Random entered:\n");
+        for (int i = 0; i < length; i++) {
+            printf("%d ", array[i]);
+        }
+        printf("\n");
+        Task1(array, length);
+        Task2(array, length);
+
+    }
+    return 0;
+
+}
